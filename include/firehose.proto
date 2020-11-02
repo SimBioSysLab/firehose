@@ -1,0 +1,139 @@
+// Some engineers at Google have come to the conclusion that using "required"
+// does more harm than good; they prefer to use only "optional" and "repeated".
+// However, this view is not universal. TODO
+// Source: https://developers.google.com/protocol-buffers/docs/cpptutorial
+
+syntax = "proto2";
+
+package firehose;
+
+enum RequestType {
+  m_req_heartbeat = 1;
+  m_rsp_heartbeat = 2;
+  m_req_publish = 3;
+  m_rsp_publish = 4;
+  m_req_node_register = 5;
+  m_rsp_node_register = 6;
+  m_req_accept = 7;
+  m_rsp_accept = 8;
+  m_req_prepare = 9;
+  m_rsp_prepare = 10;
+  m_req_update_subscription = 11;
+  m_rsp_update_subscription = 12;
+  m_req_replay = 13;
+  m_rsp_replay = 14;
+  m_req_reconcile = 15;
+  m_rsp_reconcile = 16;
+  m_req_last_delivered = 17;
+  m_rsp_last_delivered = 18;
+  // m_req_publish_batch = 19;
+  // m_rsp_publish_batch = 20;
+}
+
+message TelemetryProto {
+		
+    optional int64 publisher_id = 1;
+    optional int64 topic_id = 2;
+    optional int64 global_id = 3;
+    optional int64 pump_id = 4;
+    optional int64 nuzzle_id = 5;
+    repeated int64 engine_ids = 6;
+    optional int64 consumer_id = 7;
+    optional int64 publisher_sent_publish = 8;
+    optional int64 pump_received_publish = 9;
+    optional int64 pump_sent_prepare = 10;
+    optional int64 engine_received_prepare = 11;
+    optional int64 engine_sent_accept = 12;
+    optional int64 pump_received_accept = 13;
+    optional int64 publisher_received_ack = 14;
+    optional int64 engine_sent_to_nuzzle = 15;
+    optional int64 nuzzle_received_publish = 16;
+    optional int64 nuzzle_sent_publish = 17;
+    optional int64 consumer_received_publish = 18;
+}
+
+message RequestHeaderProto {
+  optional int32 sender_id = 1;
+  optional int64 sender_request_id = 2;
+  optional bytes baggage = 3;
+}
+
+message ResponseHeaderProto {
+  optional int64 sender_request_id = 1;
+  optional int32 status = 2;
+  optional string message = 3;
+  optional bytes baggage = 4;
+}
+
+message RequestPublishProto {
+  required RequestHeaderProto header = 1;
+  optional TelemetryProto telemetry = 2;
+  required uint64 timestamp = 3;
+  required uint64 topic_id = 4;
+  optional uint64 global_id = 5;
+  required bytes message = 6;
+}
+
+// message ResponsePublishBatchProto {
+//   repeated RequestPublishProto requests=1;
+// }
+
+// message RequestPublishBatchProto {
+//   repeated ResponsePublishProto responses=1;
+// }
+
+message ResponsePublishProto {
+  required ResponseHeaderProto header = 1;
+  optional TelemetryProto telemetry = 2;
+  required uint64 timestamp = 3;
+  required uint64 topic_id = 4;
+  optional uint64 global_id = 5;
+}
+
+
+message RequestPrepareProto {
+  required RequestHeaderProto header = 1;
+  optional TelemetryProto telemetry = 2;
+  required uint64 timestamp = 3;
+  required uint64 global_id = 4;
+  required uint64 topic_id = 5;
+  required bytes message = 6;
+}
+
+message ResponsePrepareProto {
+  required ResponseHeaderProto header = 1;
+  optional TelemetryProto telemetry = 2;
+  required uint64 timestamp = 3;
+  required uint64 global_id = 4;
+  required uint64 topic_id = 5;
+}
+
+message RequestAcceptProto {
+  required RequestHeaderProto header = 1;
+  optional TelemetryProto telemetry = 2;
+  required uint64 timestamp = 3;
+  required uint64 global_id = 4;
+  required uint64 topic_id = 5;
+}
+
+message ResponseAcceptProto {
+  required ResponseHeaderProto header = 1;
+  optional TelemetryProto telemetry = 2;
+  required uint64 timestamp = 3;
+}
+
+message RequestUpdateSubscriptionProto {
+  required RequestHeaderProto header = 1;
+  optional TelemetryProto telemetry = 2;
+  required uint64 timestamp = 3;
+  required uint64 topic_id = 4;
+  required uint32 action = 5;
+}
+
+message ResponseUpdateSubscriptionProto {
+  required ResponseHeaderProto header = 1;
+  optional TelemetryProto telemetry = 2;
+  required uint64 timestamp = 3;
+  required uint64 topic_id = 4;
+  required uint32 action = 5;
+}
