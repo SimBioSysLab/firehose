@@ -1,4 +1,4 @@
-#include "network/nuzzle_api.h"
+#include "api/nuzzle_api.h"
 
 namespace firehose {
 namespace network {

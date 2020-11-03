@@ -1,5 +1,4 @@
-#include "../include/common.h"
-#include "firehose/network/nuzzle_api.h"
+#include "api/nuzzle_api.h"
 
 using namespace firehose;
 using namespace firehose::network::nuzzle;

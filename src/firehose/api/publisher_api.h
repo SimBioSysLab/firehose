@@ -1,8 +1,8 @@
 #ifndef _FIREHOSE_NETWORK_PUBLISHER_API_H_
 #define _FIREHOSE_NETWORK_PUBLISHER_API_H_
 
-#include "../api/api_common.h"
-#include "../thread.h"
+#include "api_common.h"
+#include "thread.h"
 #include "message.h"
 #include "network.h"
 

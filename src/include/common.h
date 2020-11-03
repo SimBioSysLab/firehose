@@ -16,6 +16,7 @@
 #include <boost/archive/text_oarchive.hpp>
 #include <boost/array.hpp>
 #include <boost/asio.hpp>
+#include <boost/bind.hpp>
 #include <boost/serialization/string.hpp>
 #include <boost/system/error_code.hpp>
 #include <chrono>
@@ -32,6 +33,7 @@
 #include <netinet/in.h>
 #include <random>
 #include <sstream>
+#include <stdexcept>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -45,7 +47,6 @@
 #include <unistd.h>
 #include <utility>
 #include <vector>
-
 
 #define FIREHOSE_VERSION 0.1
 
@@ -78,7 +79,6 @@ const std::string default_localhost = "127.0.0.1";
 
 const int tcp_rcv_buf_size = 33554432;
 const int tcp_snd_buf_size = 33554432;
-
 
 } // namespace firehose
 

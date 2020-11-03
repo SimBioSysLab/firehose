@@ -1,8 +1,4 @@
 #include "network.h"
-#include "../util.h"
-#include <boost/bind.hpp>
-#include <iostream>
-#include <stdexcept>
 
 namespace firehose {
 namespace network {

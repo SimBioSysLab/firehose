@@ -1,15 +1,9 @@
 #ifndef _FIREHOSE_NETWORK_H_
 #define _FIREHOSE_NETWORK_H_
 
-#include <asio.hpp>
-#include <boost/bind.hpp>
-#include <mutex>
-#include <queue>
-#include <utility>
 #include "common.h"
-#include "firehose/util.h"
+#include "util.h"
 #include "message.h"
-#include "tbb/concurrent_queue.h"
 
 namespace firehose {
 namespace network {

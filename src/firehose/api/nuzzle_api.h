@@ -1,8 +1,8 @@
 #ifndef _FIREHOSE_NETWORK_NUZZLE_API_H_
 #define _FIREHOSE_NETWORK_NUZZLE_API_H_
 
-#include "../api/api_common.h"
-#include "../thread.h"
+#include "api_common.h"
+#include "thread.h"
 #include "message.h"
 #include "network.h"
 
@@ -30,6 +30,7 @@ public:
   std::vector<EngineConnection *> engine_connections;
   std::map<std::pair<uint64_t, uint64_t>, std::vector<EngineConnection *>>
       message_buffer;
+
 
   Nuzzle(int consumer_port, uint64_t node_id, uint16_t group_size);
   ~Nuzzle();

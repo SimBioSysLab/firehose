@@ -1,9 +1,5 @@
-#include "common.h"
-#include "firehose/network/publisher_api.h"
-#include "firehose/thread.h"
-#include "firehose/util.h"
-#include <iostream>
-#include <string>
+#include "api/publisher_api.h"
+
 
 using namespace firehose;
 using namespace firehose::network::publisher;

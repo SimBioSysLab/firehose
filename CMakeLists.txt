@@ -13,8 +13,7 @@ include(GNUInstallDirs)
 include(FindProtobuf)
 
 include_directories(
-	include
-	include/api
+	src/include
 	src
 	src/firehose
 	external
@@ -22,7 +21,6 @@ include_directories(
 	external/catch2
 	external/inih
 	external/termcolor
-	external/hindsight/tracer
 	${Boost_INCLUDE_DIR}
 	${CMAKE_CURRENT_BINARY_DIR}
 )
@@ -33,7 +31,7 @@ find_package(Threads REQUIRED)
 find_package(Protobuf REQUIRED)
 include_directories(${Protobuf_INCLUDE_DIR})
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
-protobuf_generate_cpp(PROTO_SRCS PROTO_HDRS include/firehose.proto)
+protobuf_generate_cpp(PROTO_SRCS PROTO_HDRS src/include/firehose.proto)
 add_library(firehose_proto ${PROTO_HDRS} ${PROTO_SRCS})
 target_link_libraries(firehose_proto INTERFACE 
 ${Protobuf_INCLUDE_DIR}
@@ -42,16 +40,16 @@ ${Protobuf_INCLUDE_DIR}
 add_library( firehose
 	external/lz4.c
 	external/lz4hc.c
-	src/firehose/util.cpp
-	src/firehose/thread.cpp
+	src/include/util.cpp
+	src/include/thread.cpp
 	src/firehose/api/api_common.cpp
 
-	src/firehose/network/network.cpp
-	src/firehose/network/pump_api.cpp
-	src/firehose/network/publisher_api.cpp
-	src/firehose/network/engine_api.cpp
-	src/firehose/network/nuzzle_api.cpp
-	src/firehose/network/consumer_api.cpp
+	src/include/network.cpp
+	src/firehose/api/pump_api.cpp
+	src/firehose/api/publisher_api.cpp
+	src/firehose/api/engine_api.cpp
+	src/firehose/api/nuzzle_api.cpp
+	src/firehose/api/consumer_api.cpp
 	
 	
 	src/firehose/pump.cpp

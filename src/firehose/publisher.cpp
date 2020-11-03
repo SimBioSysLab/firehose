@@ -1,4 +1,4 @@
-#include "network/publisher_api.h"
+#include "api/publisher_api.h"
 
 namespace firehose {
 namespace network {
